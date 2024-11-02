@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col justify-center items-center h-screen">
+  <h1>The Rookie : Season 3</h1>
+
+  <div class="w-full max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <!-- Dropdown for selecting video -->
+    <div class="mb-4">
+      <label for="videoSelect" class="block text-gray-700 text-lg font-medium mb-2">Select a Video</label>
+      <select id="videoSelect" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300">
+        <option value="" selected>Select a video</option>
+        <option value="https://videodb1.blob.core.windows.net/rookies3/The.Rookie.S03E01.Consequences.720p.WEB-HD.x264.350MB-Pahe.in.mkv">Video 1</option>
+      </select>
+    </div>
+
+    <!-- Button to load the video -->
+    <button id="loadVideoButton" class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+      Load Video
+    </button>
+
+    <!-- Video Player -->
+    <div class="mt-6">
+      <video id="videoPlayer" class="w-full rounded-lg shadow-md" controls>
+        <source id="videoSource" src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    // Get the necessary elements
+    const videoSelect = document.getElementById('videoSelect');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoSource = document.getElementById('videoSource');
+    const loadVideoButton = document.getElementById('loadVideoButton');
+
+    // Add event listener to the button
+    loadVideoButton.addEventListener('click', function() {
+      const selectedVideo = videoSelect.value; // Get the selected video URL
+      if (selectedVideo) {
+        videoSource.src = selectedVideo; // Set the video source
+        videoPlayer.load(); // Load the new video into the player
+      } else {
+        alert("Please select a video from the dropdown.");
+      }
+    });
+  </script>
+  
+</body>
+</html>
